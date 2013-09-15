@@ -1,0 +1,113 @@
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+
+<http://270a.info/graph/interlinks>
+    rdfs:label "270a.info interlinks"@en ;
+    rdfs:comment "Outbound interlinks for 270a.info datasets"@en ;
+    dcterms:creator <http://csarven.ca/#i>
+    .
+
+<http://csarven.ca/#i>
+    rdfs:label "Sarven Capadisli"@en
+    .
+
+<http://worldbank.270a.info/>
+    rdfs:label "World Bank"@en ;
+    skos:exactMatch
+        <http://transparency.270a.info/> ,
+        <http://ecb.270a.info/> ,
+        <http://fao.270a.info/> ,
+        <http://imf.270a.info/> ,
+        <http://bfs.270a.info/> ,
+        <http://dbpedia.org/> ,
+        <http://eurostat.linked-statistics.org/> ,
+        <http://sws.geonames.org/> ,
+        <http://data.nasa.gov/>
+    .
+
+<http://transparency.270a.info/>
+    rdfs:label "Transparency International"@en ;
+    skos:exactMatch
+        <http://worldbank.270a.info/> ,
+        <http://fao.270a.info/> ,
+        <http://imf.270a.info/> ,
+        <http://ecb.270a.info/> ,
+        <http://dbpedia.org/> ,
+        <http://eurostat.linked-statistics.org/> ,
+        <http://sws.geonames.org/>
+    .
+
+<http://ecb.270a.info/>
+    rdfs:label "European Central Bank"@en ;
+    skos:exactMatch
+        <http://worldbank.270a.info/> ,
+        <http://transparency.270a.info/> ,
+        <http://fao.270a.info/> ,
+        <http://imf.270a.info/> ,
+        <http://bfs.270a.info/> ,
+        <http://dbpedia.org/>
+    .
+
+<http://fao.270a.info/>
+    rdfs:label "Food and Agriculture Organization of the United Nations"@en ;
+    skos:exactMatch
+        <http://worldbank.270a.info/> ,
+        <http://transparency.270a.info/> ,
+        <http://ecb.270a.info/> ,
+        <http://imf.270a.info/> ,
+        <http://eunis.eea.europa.eu/> ,
+        <http://dbpedia.org/>
+    .
+
+<http://oecd.270a.info/>
+    rdfs:label "Organisation for Economic Co-operation and Development"@en ;
+    skos:exactMatch
+        <http://worldbank.270a.info/> ,
+        <http://transparency.270a.info/> ,
+        <http://ecb.270a.info/> ,
+        <http://fao.270a.info/> ,
+        <http://imf.270a.info/> ,
+        <http://bfs.270a.info/> ,
+        <http://dbpedia.org/>
+    .
+
+<http://bfs.270a.info/>
+    rdfs:label "Swiss Federal Statistics Office"@en ;
+    skos:exactMatch
+        <http://worldbank.270a.info/> ,
+        <http://dbpedia.org/> ,
+        <http://imf.270a.info/> ,
+        <http://ecb.270a.info/>
+    .
+
+<http://imf.270a.info/>
+    rdfs:label "International Monetary Fund"@en ;
+    skos:exactMatch
+        <http://worldbank.270a.info/> ,
+        <http://transparency.270a.info/> ,
+        <http://fao.270a.info/> ,
+        <http://ecb.270a.info/> ,
+        <http://bfs.270a.info/> ,
+        <http://dbpedia.org/>
+    .
+
+<http://dbpedia.org/>
+    rdfs:label "DBpedia"@en
+    .
+
+<http://eurostat.linked-statistics.org/>
+    rdfs:label "Eurostat"@en
+    .
+
+<http://sws.geonames.org/>
+    rdfs:label "Geonames"@en
+    .
+
+<http://eunis.eea.europa.eu/>
+    rdfs:label "EUNIS"@en
+    .
+
+<http://data.nasa.gov/>
+    rdfs:label "NASA"@en
+    .
