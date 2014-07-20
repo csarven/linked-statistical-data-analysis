@@ -56,29 +56,27 @@
                     </ul>
                 </div>
 
+                <dl id="document-identifier">
+                    <dt>Document ID</dt>
+                    <dd><a href="http://csarven.ca/linked-statistical-data-analysis">http://csarven.ca/linked-statistical-data-analysis</a></dd>
+                </dl>
+
+<!--                <dl id="document-submitted">-->
+<!--                    <dt>Published</dt>-->
+<!--                    <dd property="dcterms:published" content="2013-07-15T09:00:00Z">2013-07-15</dd>-->
+<!--                    <dt>Modified</dt>-->
+<!--                    <dd property="dcterms:published" content="2013-07-15T09:00:00Z">2013-07-15</dd>-->
+<!--                </dl>-->
+
+<!--                <dl id="document-license">-->
+<!--                    <dt>License</dt>-->
+<!--                    <dd><a about="[this:]" rel="license cc:license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 Unported (CC BY-SA 4.0)</a></dd>-->
+<!--                </dl>-->
+
                 <dl id="document-purpose">
                     <dt>Purpose</dt>
                     <dd property="rdfs:comment">A path to using federated queries, statistical analyses and reuse of statistical linked data.</dd>
                 </dl>
-
-
-<!--                <dl id="document-submitted">-->
-<!--                    <dt>Date</dt>-->
-<!--                    <dd property="dcterms:published" content="2013-07-15T09:00:00Z">2013-07-15</dd>-->
-<!--                </dl>-->
-<!--                <span property="dcterms:modified" content="2013-03-15T09:00:00Z"></span>-->
-
-
-                <div id="document-identifier">
-                    <h2>Document ID</h2>
-                    <p><a href="http://csarven.ca/linked-statistical-data-analysis">http://csarven.ca/linked-statistical-data-analysis</a></p>
-                </div>
-
-<!--                <div id="document-license">-->
-<!--                    <h2>License</h2>-->
-<!--                    <p><a about="[this:]" rel="license cc:license" href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-ShareAlike 3.0 Unported (CC BY-SA 3.0)</a></p>-->
-<!--                </div>-->
-
 
                 <div property="dcterms:description" id="content" class="entry-content">
                     <div property="dcterms:abstract" id="abstract" class="entry-summary">
@@ -181,7 +179,7 @@
 
                     <p>One additional requirement from the datasets is that the RDF Data Cube component properties (e.g., dimensions, measures) either use <code>sdmx-dimension:refArea</code>, <code>sdmx-dimension:refPeriod</code>, <code>sdmx-measure:obsValue</code> directly or respective sub-properties (<code>rdfs:subPropertyOf</code>). Given decentralized mappings of the statistical datasets (published as SDMX-ML), their commonality is expected to be the use, or a reference to SDMX-RDF properties in order to achieve generalized federated queries without having complete knowledge of the structures of the datasets, but rather only the essential bits.</p>
 
-                    <p>In order to proceed with the analysis, we use the selections made by the user: dataset<sub>x</sub> and dataset<sub>y</sub>, reference period, and then gather all observations with corresponding reference areas, and measures (observation values). Only the observations whose values for the reference areas with interlinked concepts area are retained in the final result.</p>
+                    <p>In order to proceed with the analysis, we use the selections made by the user: dataset<sub>x</sub> and dataset<sub>y</sub>, reference period, and then gather all observations with corresponding reference areas, and measures. Only the observations with reference areas which have a interlinks are retained in the final result.</p>
 
 
 
@@ -195,7 +193,7 @@
 
                     <p>In order to put the cost of queries briefly into perspective i.e., the conducted tests and sample sizes of the dataspaces that were used; the total number of triples (including observations and metadata) per endpoint are: 50 thousand (<a href="http://transparency.270a.info/">Transparency International</a> [<a href="#r_26">26</a>]), 54 million (<a href="http://fao.270a.info/">Food and Agriculture Organization of the United Nations</a> [FAO] [<a href="#r_27">27</a>]), 305 million (<a href="http://oecd.270a.info/">Organisation for Economic Co-operation and Development</a> [OECD] [<a href="#r_28">28</a>]), 221 million (<a href="http://worldbank.270a.info/">World Bank</a> [<a href="#r_29">29</a>]), 470 million (<a href="http://ecb.270a.info/">European Central Bank</a> [ECB] [<a href="#r_30">30</a>]), 36 million (<a href="http://imf.270a.info/">International Monetary Fund</a> [IMF] [<a href="#r_31">31</a>]).</p>
 
-                    <p>The anatomy of the query is shown in Figure [<a href="#federated-sparql-query">3</a>]. Essentially, the SPARQL Endpoint URI and the dataset URI are the only requirements. The structure of the statements and operations are particular to getting the most out of <a href="http://jena.apache.org/">Apache Jena</a>'s [<a href="#r_32">32</a>] <a href="http://incubator.apache.org/jena/documentation/tdb/">TDB</a> storage system [<a href="#r_33">33</a>], <a href="http://jena.apache.org/documentation/tdb/optimizer.html">TDB Optimizer</a> [<a href="#r_34">34</a>] and <a href="http://incubator.apache.org/jena/documentation/serving_data/index.html">Fuseki</a> [<a href="#r_35">35</a>] SPARQL endpoints. Better performing queries can be achieved by knowing the frequencies of the predicates upfront, and choosing better orders for a given dataset to avoid processing of false negatives.</p>
+                    <p>The anatomy of the query is shown in Figure [<a href="#federated-sparql-query">3</a>]. The SPARQL Endpoint and the dataset URIs are the only requirements. The structure of the statements and operations tries to get the most out of <a href="http://jena.apache.org/">Apache Jena</a>'s [<a href="#r_32">32</a>] <a href="http://incubator.apache.org/jena/documentation/tdb/">TDB</a> storage system [<a href="#r_33">33</a>], <a href="http://jena.apache.org/documentation/tdb/optimizer.html">TDB Optimizer</a> [<a href="#r_34">34</a>] and <a href="http://incubator.apache.org/jena/documentation/serving_data/index.html">Fuseki</a> [<a href="#r_35">35</a>] SPARQL endpoints. Better performing queries can be achieved by knowing the predicate frequency upfront, and ordering them in for a dataset to avoid processing of false negatives.</p>
 
                     <div class="figure" id="federated-sparql-query">
 <pre>
@@ -237,11 +235,9 @@ WHERE {
       }
     }
   }
-  FILTER (?refAreaYExactMatch = ?refAreaX 
-          || ?refAreaXExactMatch = ?refAreaY
+  FILTER (?refAreaYExactMatch = ?refAreaX || ?refAreaXExactMatch = ?refAreaY
           || ?refAreaY = ?refAreaX)
 }
-ORDER BY ?identityY ?identityX ?x ?y
 </pre>
                         <p><strong>Figure 3</strong>: Federated SPARQL query integrating statistical linked data.</p>
                     </div>
