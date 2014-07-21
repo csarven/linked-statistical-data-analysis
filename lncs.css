@@ -11,13 +11,13 @@ a abbr { cursor: pointer; border-bottom:0; }
 table { border-collapse:collapse; }
 tr { vertical-align:top; }
 ol { list-style-position:inside; }
-h2, h3, h4, h5, h6, p, ul, ol, li, pre, code, table {
+h2, h3, h4, h5, h6, p, ul, ol, li, pre, code {
 orphans: 3;
 widows: 3;
 }
 
 thead { display: table-header-group; }
-tr, img, object, .figure { page-break-inside: avoid; }
+table, img, object, .figure { page-break-inside: avoid; }
 img, object { max-width:100% !important; height:auto !important }
 
 object[width="640"] { max-width:480px !important; }
@@ -56,7 +56,7 @@ background-color:#FFFFFF;
 color:#000000;
 font-family:"Latin Modern Roman", "Computer Modern", cmr10, "Times New Roman", serif;
 font-size:13px;
-line-height:1.215;
+line-height:1.22;
 position:relative;
 margin:0 auto;
 width:122mm;
@@ -72,6 +72,7 @@ font-size:13px;
 h1,h2,h3,h4,h5,h6 {
 overflow:hidden;
 page-break-after: avoid;
+line-height:1.231;
 }
 h1 {
 font-size:19px;
@@ -106,7 +107,10 @@ content: counter(section) "." counter(sub-section) "\00a0\00a0\00a0\00a0";
 
 h1 + p,
 h2 + p,
-h3 + p {
+h3 + p,
+h4 + p,
+h5 + p,
+div > p:first-child {
 text-indent:0;
 }
 h1 + p {
@@ -124,7 +128,6 @@ content: ".";
 h4 + p,
 h5 + p {
 display:inline;
-text-indent:0;
 /*text-align:justify;*/
 
 /*This is a bit hacky.. it appears to work in webkit and maybe it shouldn't */
@@ -147,7 +150,6 @@ white-space:pre;
 
 * + h4:before,
 caption:before,
-figure:before,
 * + h5:before,
 h4 + h5:before {
 content:"\A";
@@ -185,8 +187,9 @@ font-family:monospace;
 
 
 #authors {
-margin-bottom:2.5em;
+margin:0 auto 2.5em -3.05%;
 text-align:center;
+width:106.1%;
 }
 
 #authors dl {
@@ -231,11 +234,22 @@ content:", ";
 #author_orgs li:last-child:after {
 content:"";
 }
-
-
+#authors sup {
+margin-left:1px;
+}
+#authors sup:after {
+content:",";
+}
+#authors sup:last-child:after,
+#authors sup:first-child:after {
+content:"" !important;
+}
 
 #abstract h2:before,
-#document-identifier h2:before,
+#document-identifier dt:before,
+#document-purpose dt:before,
+#document-submitted dt:before,
+#document-license dt:before,
 #categories-and-subject-descriptors h2:before,
 #keywords h2:before,
 #acknowledgements h2:before,
@@ -247,7 +261,10 @@ content: "";
 }
 
 #abstract h2:after,
-#document-identifier h2:after,
+#document-identifier dt:after,
+#document-purpose dt:after,
+#document-submitted dt:after,
+#document-license dt:after,
 #categories-and-subject-descriptors h2:after,
 #keywords h2:after {
 content: ":";
@@ -260,8 +277,14 @@ content: ".";
 
 #abstract h2,
 #abstract h2 + p,
-#document-identifier h2,
-#document-identifier h2 + p,
+#document-identifier dt,
+#document-identifier dt + dd,
+#document-purpose dt,
+#document-purpose dt + dd,
+#document-submitted dt,
+#document-submitted dt + dd,
+#document-license dt,
+#document-license dt + dd,
 #keywords h2,
 #keywords h2 + ul {
 display:inline;
@@ -269,7 +292,7 @@ display:inline;
 
 
 #document-purpose {
-display:none;
+/*display:none;*/
 }
 
 table {
@@ -282,7 +305,7 @@ padding-right:0;
 }
 
 
-ol, ul, dd, table, figure {
+ol, ul, dd, table {
 margin-bottom:1em;
 }
 
@@ -296,19 +319,34 @@ text-indent:0;
 text-align:left;
 }
 
+.figure pre {
+margin-top:-1em;
+}
+
 .figure-column-2 {
--webkit-column-count:2;
--webkit-column-width:47.5%;
--webkit-column-gap:5%;
--moz-column-count:2;
--moz-column-width:47.5%;
--moz-column-gap:5%;
-column-count:2;
-column-column-width:47.5%;
-column-gap:5%;
+/*-webkit-column-count:2;*/
+/*-webkit-column-width:47.5%;*/
+/*-webkit-column-gap:5%;*/
+/*-moz-column-count:2;*/
+/*-moz-column-width:47.5%;*/
+/*-moz-column-gap:5%;*/
+/*column-count:2;*/
+/*column-column-width:47.5%;*/
+/*column-gap:5%;*/
+float:left;
+width:100%;
+}
+.figure-column-2 + *{
+clear:both;
 }
 .figure-column-2 .figure {
 margin-top:0;
+width:47.5%;
+margin-left:5%;
+float:left;
+}
+.figure-column-2 .figure:first-child {
+margin-left:0;
 }
 
 #abstract, ol, ul, p, dd {
@@ -363,6 +401,9 @@ text-align:center;
 
 #abstract,
 #document-identifier,
+#document-purpose,
+#document-submitted,
+#document-license,
 #categories-and-subject-descriptors,
 #keywords {
 margin:0 1cm 1em;
@@ -396,7 +437,9 @@ display:inline;
 content:"; ";
 }
 #keywords li:after {
-content:", ";
+content:" \2022";
+margin-left:-1px;
+margin-right:-1px;
 }
 #categories-and-subject-descriptors li:last-child:after,
 #keywords li:last-child:after {
@@ -435,8 +478,9 @@ display:none;
 
 
 /*Bring these back to life*/
-.journal #document-submitted,
 /*.journal #document-identifier,*/
+#document-purpose,
+.journal #document-submitted,
 .journal #document-license {
 display:none;
 }
