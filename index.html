@@ -17,9 +17,14 @@
     xmlns:cal="http://www.w3.org/2002/12/cal/ical#"
     xmlns:org="http://www.w3.org/ns/org#"
     xmlns:biblio="http://purl.org/net/biblio#"
-    xmlns:book="http://purl.org/NET/book/vocab#"
     xmlns:schema="http://schema.org/"
     xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+    xmlns:sio="http://semanticscience.org/resource/"
+    xmlns:opmw="http://www.opmw.org/ontology/"
+    xmlns:prov="http://www.w3.org/ns/prov#"
+    xmlns:deo="http://purl.org/spar/deo/"
+    xmlns:sro="http://salt.semanticauthoring.org/ontologies/sro#"
+
     xmlns:this="http://csarven.ca/linked-statistical-data-analysis"
 
     xml:lang="en">
@@ -79,9 +84,9 @@
                 </dl>
 
                 <div property="dcterms:description" id="content" class="entry-content">
-                    <div property="dcterms:abstract" id="abstract" class="entry-summary">
+                    <div id="abstract">
                         <h2>Abstract</h2>
-                        <p>Linked Data design principles are increasingly employed to publish and consume high-fidelity, heterogeneous statistical datasets in a distributed fashion. While vast amounts of linked statistics are available, access and reuse of the data is subject to expertise in corresponding technologies. There exists no user-centred interfaces for researchers, journalists and interested people to compare statistical data retrieved from different sources on the Web. Given that the RDF Data Cube vocabulary is used to describe statistical data, its use makes it possible to discover and identify statistical data artefacts in a uniform way. In this article, the design and implementation of a user-centric application and service is presented. Behind the scene, the platform utilizes federated SPARQL queries to gather statistical data from distributed data stores. The R language for statistical computing is employed to perform statistical analyses and visualizations. The Shiny application and server bridges the front-end Web user interface with R on the server-side in order to compare statistical macrodata, and stores analyses results in RDF for future research. As a result, distributed linked statistics with accompanying provenance data can be more easily explored and analysed by interested parties.</p>
+                        <p property="dcterms:abstract" class="entry-summary">Linked Data design principles are increasingly employed to publish and consume high-fidelity, heterogeneous statistical datasets in a distributed fashion. While vast amounts of linked statistics are available, access and reuse of the data is subject to expertise in corresponding technologies. There exists no user-centred interfaces for researchers, journalists and interested people to compare statistical data retrieved from different sources on the Web. Given that the RDF Data Cube vocabulary is used to describe statistical data, its use makes it possible to discover and identify statistical data artefacts in a uniform way. In this article, the design and implementation of a user-centric application and service is presented. Behind the scene, the platform utilizes federated SPARQL queries to gather statistical data from distributed data stores. The R language for statistical computing is employed to perform statistical analyses and visualizations. The Shiny application and server bridges the front-end Web user interface with R on the server-side in order to compare statistical macrodata, and stores analyses results in RDF for future research. As a result, distributed linked statistics with accompanying provenance data can be more easily explored and analysed by interested parties.</p>
                     </div>
 
                     <div id="keywords">
@@ -305,8 +310,8 @@ WHERE {
                     <p>Many thanks to colleagues whom helped one way or another during the course of this work (not implying any endorsement); in no particular order: <a href="http://www.transparency.org/whoweare/contact#S_deborah_hardoon">Deborah Hardoon</a> (<a href="http://transparency.org/">Transparency International</a>), <a href="http://bis.uni-leipzig.de/AxelNgonga">Axel-Cyrille Ngonga Ngomo</a> (<a href="http://www.zv.uni-leipzig.de/">Universität Leipzig</a>, <a href="http://aksw.org/">AKSW</a>), <a href="http://www.wirtschaft.bfh.ch/de/ueber_uns/kontakt/detailseite.html?tx_bfhpersonalpages_p=rca2&#38;tx_bfhpersonalpages_screen=data">Alberto Rascón</a> (<a href="http://bfh.ch/">Berner Fachhochshule</a> [BFS]), <a href="http://www.wirtschaft.bfh.ch/de/ueber_uns/kontakt/detailseite.html?tx_bfhpersonalpages_p=mam10&#38;tx_bfhpersonalpages_screen=data">Michael Mosimann</a> (BFS), <a href="http://www.joecheng.com/">Joe Cheng</a> (<a href="http://www.rstudio.com/">RStudio, Inc.</a>), <a href="http://www.w3.org/2011/gld/wiki/Main_Page">Government Linked Data Working Group</a>, <a href="https://groups.google.com/forum/#!forum/publishing-statistical-data">Publishing Statistical Data</a> group, <a href="http://jena.apache.org/">Apache Jena</a>, <a href="http://www.epimorphics.com/web/about#afs">Andy Seaborne</a> (<a href="http://epimorphics.com/">Epimorphics Ltd</a>), <a href="http://richard.cyganiak.de/#">Richard Cyganiak</a> (<a href="http://deri.ie/">Digital Enterprise Research Institute</a> [DERI]). And, DERI for graciously offering to host this work on their servers.</p>
 
                     <div id="references">
-                    <h2>References</h2>
-                    <ol class="references" about="[this:]">
+                        <h2>References</h2>
+                        <ol class="references" about="[this:]">
 <li id="r_1">stats.270a.info, <a rel="dcterms:references" href="http://stats.270a.info/">http://stats.270a.info/</a></li>
 <li id="r_2">Capadisli, S.: Statistical Linked Dataspaces. Master's thesis, National University of Ireland (2012), <a rel="dcterms:references" href="http://csarven.ca/statistical-linked-dataspaces">http://csarven.ca/statistical-linked-dataspaces</a></li>
 <li id="r_3">The RDF Data Cube vocabulary, <a rel="dcterms:references" href="http://www.w3.org/TR/vocab-data-cube/">http://www.w3.org/TR/vocab-data-cube/</a></li>
@@ -352,7 +357,7 @@ COLD, ISWC (2011), <a rel="dcterms:references" href="http://iswc2011.semanticweb
 <li id="r_42">LSD Analysis code at GitHub, <a rel="dcterms:references" href="https://github.com/csarven/lsd-analysis">https://github.com/csarven/lsd-analysis</a></li>
 <li id="r_43">Demter, J., Auer, S., Martin, M., Lehmann, J.: LODStats – An Extensible Framework for High-performance Dataset Analytics, EKAW (2012), <a rel="dcterms:references" href="http://svn.aksw.org/papers/2011/RDFStats/public.pdf">http://svn.aksw.org/papers/2011/RDFStats/public.pdf</a></li>
 <li id="r_44">European Statistics Code of Practice, <a rel="dcterms:references" href="http://epp.eurostat.ec.europa.eu/portal/page/portal/quality/code_of_practice">http://epp.eurostat.ec.europa.eu/portal/page/portal/quality/code_of_practice</a></li>
-                    </ol>
+                        </ol>
                     </div>
                 </div>
 
